@@ -3,8 +3,7 @@ import logoLight from "./logo-light.svg";
 import { useReadContract, useWriteContract, useWaitForTransactionReceipt, useWatchContractEvent } from "wagmi";
 import counterAbi from "../../abi/Counter.json";
 import { useState } from "react";
-import { Link } from "react-router";
-import NavLinks from "~/routes/components/navlinks";
+
 
 
 
@@ -50,24 +49,29 @@ export function Welcome() {
   console.log("ADDRESS:", contractAddress);
 
   return (
-    <main className="flex items-center justify-center pt-4 pb-4">
-      <div className="flex-1 flex flex-col items-center gap-4 min-h-0">
-        <header className="flex flex-col items-center gap-2">
+    <main className="flex items-center justify-center pt-16 pb-4">
+      <div className="flex-1 flex flex-col items-center gap-16 min-h-0">
+        <header className="flex flex-col items-center gap-9">
           <div className="w-[500px] max-w-[100vw] p-4">
              <h1 className="text-4xl font-bold text-center text-gray-900 dark:text-gray-100">
-               Hardhat Project New Counter With DAO Model
+               Hardhat Project
              </h1>
           </div>
-          <NavLinks />
-          {/* <nav className="flex items-center justify-center gap-4">
-            <Link to="/dashboard" className="text-md text-gray-900 dark:text-gray-100 bg-blue-500 text-white px-4 py-2 rounded-md">Dashboard</Link>
-            <Link to="/proposels" className="text-md text-gray-900 dark:text-gray-100 bg-blue-500 text-white px-4 py-2 rounded-md">Proposels</Link>     
-            <Link to="/create_proposels" className="text-md text-gray-900 dark:text-gray-100 bg-blue-500 text-white px-4 py-2 rounded-md">Create Propsels</Link>    
-            <Link to="/history" className="text-md text-gray-900 dark:text-gray-100 bg-blue-500 text-white px-4 py-2 rounded-md">History</Link>
-            <Link to="/profile" className="text-md text-gray-900 dark:text-gray-100 bg-blue-500 text-white px-4 py-2 rounded-md ">Profile </Link>
-          </nav> */}
         </header>
+        <div className="max-w-[300px] w-full space-y-6 px-4">
+           <h3>Hardhat Project</h3>
+              <h2>
+              Counter value: {isLoading ? "Loading..." : count?.toString()}
+              </h2>
 
+                  <button
+                  disabled={isPending}
+                  onClick={handleIncrement} className="w-full px-4 py-2 text-white bg-blue-500 rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-50 cursor-pointer"
+                  >
+                  {txPending ? "Processing..." : "Increment"}
+                  </button>
+
+        </div>
       </div>
     </main>
   );

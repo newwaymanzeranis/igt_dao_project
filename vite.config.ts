@@ -5,4 +5,10 @@ import tsconfigPaths from "vite-tsconfig-paths";
 
 export default defineConfig({
   plugins: [tailwindcss(), reactRouter(), tsconfigPaths()],
+  ssr: { 
+    noExternal: ['@apollo/client', 'ts-invariant'],
+  },
+  optimizeDeps: { 
+    include: ['@apollo/client/core', '@apollo/client/cache'], 
+  },
 });
